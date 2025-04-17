@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}<title>Topics</title>{% endblock %}
+
+{% block content %}
+  <h1>Topics</h1>
+  {% if topic_list %}
+    <table class="table">
+      <tr>
+        <th>Name</th>
+        <th>Details</th>
+      </tr>
+      {% for topic in topic_list %}
+      <tr>
+        <td>{{ topic.name }}</td>
+        <td>
+{#          <a href="{% url 'agency:redactor-detail' redactor.pk %}" class="btn btn-primary link-to-page">#}
+{#            See details#}
+{#          </a>#}
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>There are no topics.</p>
+  {% endif %}
+{% endblock %}
