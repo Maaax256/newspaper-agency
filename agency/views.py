@@ -18,7 +18,6 @@ def index(request):
 class NewspaperListView(generic.ListView):
     model = Newspaper
     template_name = "agency/newspaper/newspaper_list.html"
-    queryset = Newspaper.objects.all().select_related("topic")
 
 
 class RedactorListView(generic.ListView):
@@ -34,5 +33,6 @@ class TopicListView(generic.ListView):
 class NewspaperDetailView(generic.DetailView):
     model = Newspaper
     queryset = (Newspaper.objects.all()
-                .select_related("topic")
+                .prefetch_related("topics")
                 .prefetch_related("redactors"))
+    template_name = "agency/newspaper/newspaper_detail.html"

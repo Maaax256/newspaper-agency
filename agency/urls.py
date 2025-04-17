@@ -1,6 +1,10 @@
 from django.urls import path
 
-from agency.views import NewspaperListView, index, RedactorListView, TopicListView
+from agency.views import (NewspaperListView,
+                          index,
+                          RedactorListView,
+                          TopicListView,
+                          NewspaperDetailView)
 
 urlpatterns = [
     path("", index, name="home"),
@@ -18,6 +22,12 @@ urlpatterns = [
         "topics/",
         TopicListView.as_view(),
         name="topic-list"
+    ),
+
+    path(
+        "newspapers/<int:pk>/",
+        NewspaperDetailView.as_view(),
+        name="newspaper-detail"
     )
 ]
 

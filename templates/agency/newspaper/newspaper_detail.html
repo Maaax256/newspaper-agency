@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}
+  <title>Newspaper</title>
+{% endblock %}
+
+{% block content %}
+  <h1>{{ newspaper.title }}</h1>
+  <p>{{ newspaper.published_date }}</p>
+  <p>{{ newspaper.content }}</p>
+
+  {% if newspaper.topics.all %}
+    <span>Topics:</span>
+    {% for topic in newspaper.topics.all %}
+      <span class="badge badge-primary">{{ topic.name }}</span>
+    {% endfor %}
+  {% else %}
+    <p>There are no topics for this newspaper</p>
+  {% endif %}
+
+  {% if newspaper.redactors.all %}
+    <h2>Redactors:</h2>
+    <ul>
+      {% for redactor in newspaper.redactors.all %}
+        <li>
+          {{ redactor.first_name }} {{ redactor.last_name }}
+{#          <a href="{% url 'agency:redactor-detail' redactor.pk %}">#}
+{#            See details#}
+{#          </a>#}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>There are no redactors of this newspaper</p>
+  {% endif %}
+{% endblock %}

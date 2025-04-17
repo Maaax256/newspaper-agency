@@ -9,13 +9,19 @@ class Redactor(AbstractUser):
         return f"{self.first_name} {self.last_name}"
 
 
+class Topic(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Newspaper(models.Model):
     title = models.CharField(max_length=100, unique=True)
     content = models.TextField()
     published_date = models.DateTimeField(auto_now_add=True)
-    topic = models.ForeignKey(
-        "Topic",
-        on_delete=models.CASCADE,
+    topics = models.ManyToManyField(
+        Topic,
         related_name="newspapers"
     )
     redactors = models.ManyToManyField(
@@ -25,10 +31,3 @@ class Newspaper(models.Model):
 
     def __str__(self):
         return self.title
-
-
-class Topic(models.Model):
-    name = models.CharField(max_length=100, unique=True)
-
-    def __str__(self):
-        return self.name
