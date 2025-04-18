@@ -38,6 +38,13 @@ class NewspaperDetailView(generic.DetailView):
     template_name = "agency/newspaper/newspaper_detail.html"
 
 
+class RedactorDetailView(generic.DetailView):
+    model = Redactor
+    queryset = (Redactor.objects.all()
+                .prefetch_related("newspapers"))
+    template_name = "agency/redactor/redactor_detail.html"
+
+
 class TopicDetailView(generic.DetailView):
     model = Topic
     queryset = Topic.objects.all().prefetch_related("newspapers")

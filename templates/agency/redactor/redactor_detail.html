@@ -1,20 +1,23 @@
 {% extends "base.html" %}
 
 {% block title %}
-  <title>Topic</title>
+  <title>Redactor</title>
 {% endblock %}
 
 {% block content %}
-  <h1>{{ topic.name }}</h1>
-  <h3>Newspapers with this topic:</h3>
-  {% if topic.newspapers.all %}
+  <h1>{{ redactor.first_name }} {{ redactor.last_name }}</h1>
+  <p>Email: {{ redactor.email }}</p>
+  <p>Years of experience: {{ redactor.years_of_experience }}</p>
+
+  {% if redactor.newspapers.all %}
+    <h2>Newspapers published by this redactor:</h2>
     <table class="table">
       <tr>
         <th>Title</th>
         <th>Publication date</th>
         <th>Details</th>
       </tr>
-      {% for newspaper in topic.newspapers.all %}
+      {% for newspaper in redactor.newspapers.all %}
       <tr>
         <td>{{ newspaper.title }}</td>
         <td>{{ newspaper.published_date }}</td>
@@ -27,6 +30,6 @@
       {% endfor %}
     </table>
   {% else %}
-    <p>No newspapers found with this topic</p>
+    <p>There are no newspapers published by this redactor</p>
   {% endif %}
 {% endblock %}
