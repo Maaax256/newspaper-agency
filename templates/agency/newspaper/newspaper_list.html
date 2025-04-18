@@ -3,7 +3,10 @@
 {% block title %}<title>Newspapers</title>{% endblock %}
 
 {% block content %}
-    <h1>Newspapers</h1>
+  <h1>Newspapers</h1>
+  <a href="{% url 'agency:newspaper-create' %}" class="btn btn-primary">
+    Create a new newspaper
+  </a>
 
   {% if newspaper_list %}
     <table class="table">

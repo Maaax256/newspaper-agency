@@ -1,6 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views import generic
 
+from agency.forms import NewspaperForm
 from agency.models import Newspaper, Redactor, Topic
 
 
@@ -49,3 +51,10 @@ class TopicDetailView(generic.DetailView):
     model = Topic
     queryset = Topic.objects.all().prefetch_related("newspapers")
     template_name = "agency/topic/topic_detail.html"
+
+
+class NewspaperCreateView(generic.CreateView):
+    model = Newspaper
+    form_class = NewspaperForm
+    success_url = reverse_lazy("agency:newspaper-list")
+    template_name = "agency/newspaper/newspaper_form.html"
