@@ -19,12 +19,12 @@
   {% endif %}
 
   {% if newspaper.redactors.all %}
-    <h2>Redactors:</h2>
+    <h2>Redactors who published this newspaper:</h2>
     <ul>
       {% for redactor in newspaper.redactors.all %}
         <li>
           {{ redactor.first_name }} {{ redactor.last_name }}
-{#          <a href="{% url 'agency:redactor-detail' redactor.pk %}">#}
+{#          <a href="{% url 'agency:redactor-detail' redactor.pk %}" class="btn btn-primary link-to-page">#}
 {#            See details#}
 {#          </a>#}
         </li>

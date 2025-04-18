@@ -14,9 +14,9 @@
       <tr>
         <td>{{ topic.name }}</td>
         <td>
-{#          <a href="{% url 'agency:redactor-detail' redactor.pk %}" class="btn btn-primary link-to-page">#}
-{#            See details#}
-{#          </a>#}
+          <a href="{% url 'agency:topic-detail' topic.pk %}" class="btn btn-primary link-to-page">
+            See details
+          </a>
         </td>
       </tr>
       {% endfor %}

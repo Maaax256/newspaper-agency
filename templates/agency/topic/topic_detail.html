@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}
+  <title>Topic</title>
+{% endblock %}
+
+{% block content %}
+  <h1>{{ topic.name }}</h1>
+  <h3>Newspapers with this topic:</h3>
+  {% if topic.newspapers.all %}
+    <table class="table">
+      <tr>
+        <th>Name</th>
+        <th>Details</th>
+      </tr>
+      {% for newspaper in topic.newspapers.all %}
+      <tr>
+        <td>{{ newspaper.title }}</td>
+        <td>
+          <a href="{% url 'agency:newspaper-detail' newspaper.pk %}" class="btn btn-primary link-to-page">
+            See details
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>No newspapers found with this topic</p>
+  {% endif %}
+{% endblock %}
