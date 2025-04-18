@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'debug_toolbar',
     'crispy_forms',
-    'django_select2',
     'agency'
 ]
 

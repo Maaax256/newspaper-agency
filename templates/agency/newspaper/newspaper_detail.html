@@ -6,6 +6,11 @@
 
 {% block content %}
   <h1>{{ newspaper.title }}</h1>
+  {% if user in newspaper.redactors.all %}
+    <a href="{% url 'agency:newspaper-update' newspaper.pk %}" class="btn btn-primary">
+      Update this newspaper
+    </a>
+  {% endif %}
   <p>{{ newspaper.published_date }}</p>
   <p>{{ newspaper.content }}</p>
 

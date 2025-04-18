@@ -24,5 +24,4 @@ urlpatterns = [
     path("accounts/", include("django.contrib.auth.urls")),
     path("", include("agency.urls", namespace="agency")),
     path("__debug__/", include("debug_toolbar.urls")),
-    path("django_select2/", include("django_select2.urls")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -58,3 +58,10 @@ class NewspaperCreateView(generic.CreateView):
     form_class = NewspaperForm
     success_url = reverse_lazy("agency:newspaper-list")
     template_name = "agency/newspaper/newspaper_form.html"
+
+
+class NewspaperUpdateView(generic.UpdateView):
+    model = Newspaper
+    form_class = NewspaperForm
+    success_url = reverse_lazy("agency:newspaper-list")
+    template_name = "agency/newspaper/newspaper_form.html"
