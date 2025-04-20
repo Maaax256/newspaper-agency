@@ -1,3 +1,4 @@
+from django.contrib.auth import login
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
@@ -81,3 +82,21 @@ class ProfileUpdateView(generic.UpdateView):
     form_class = RedactorForm
     success_url = reverse_lazy("agency:home")
     template_name = "agency/redactor/redactor_form.html"
+
+
+class RegistrationView(generic.CreateView):
+    model = Redactor
+    form_class = RedactorForm
+    success_url = reverse_lazy("agency:home")
+    template_name = "agency/redactor/redactor_form.html"
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        login(self.request, self.object)
+        return response
+
+
+class NewspaperDeleteView(generic.DeleteView):
+    model = Newspaper
+    success_url = reverse_lazy("agency:newspaper-list")
+    template_name = "agency/newspaper/newspaper_confirm_delete.html"

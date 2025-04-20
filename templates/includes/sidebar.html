@@ -25,6 +25,12 @@
         <button type="submit">Log in</button>
       </form>
     </li>
+    <li class="list-group-item">
+      <form action="{% url 'agency:redactor-create' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Register</button>
+      </form>
+    </li>
   {% endif %}
 
   <br>
