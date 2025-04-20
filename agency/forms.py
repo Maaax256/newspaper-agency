@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth import get_user_model
-from agency.models import Newspaper, Topic
+from django.contrib.auth.forms import UserCreationForm
+
+from agency.models import Newspaper, Topic, Redactor
 
 
 class NewspaperForm(forms.ModelForm):
@@ -18,3 +20,14 @@ class NewspaperForm(forms.ModelForm):
     class Meta:
         model = Newspaper
         fields = "__all__"
+
+
+class RedactorForm(UserCreationForm):
+
+    class Meta(UserCreationForm.Meta):
+        model = Redactor
+        fields = UserCreationForm.Meta.fields + (
+            "first_name",
+            "last_name",
+            "years_of_experience"
+        )
