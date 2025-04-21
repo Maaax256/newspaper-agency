@@ -94,7 +94,7 @@ class ProfileUpdateView(LoginRequiredMixin, generic.UpdateView):
     template_name = "agency/redactor/redactor_form.html"
 
 
-class RegistrationView(LoginRequiredMixin, generic.CreateView):
+class RegistrationView(generic.CreateView):
     model = get_user_model()
     form_class = RedactorCreationForm
     success_url = reverse_lazy("agency:home")

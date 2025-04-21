@@ -43,23 +43,23 @@ class RedactorCreationForm(UserCreationForm):
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         required=True,
     )
-    years_of_experience = forms.IntegerField(
-        widget=forms.NumberInput(attrs={'class': 'form-control'}),
-        required=True,
-    )
     email = forms.EmailField(
         widget=forms.EmailInput(attrs={'class': 'form-control'}),
+        required=True,
+    )
+    years_of_experience = forms.IntegerField(
+        widget=forms.NumberInput(attrs={'class': 'form-control'}),
         required=True,
     )
 
     class Meta:
         model = get_user_model()
-        fields = UserCreationForm.Meta.fields + (
-            "email",
-            "first_name",
-            "last_name",
-            "years_of_experience"
-        )
+        fields = UserCreationForm.Meta.fields #+ (
+        #     "first_name",
+        #     "last_name",
+        #     "email",
+        #     "years_of_experience",
+        # )
 
     def clean_years_of_experience(self):
         years = self.cleaned_data["years_of_experience"]
