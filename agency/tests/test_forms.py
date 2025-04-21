@@ -1,8 +1,7 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
-from django.core.exceptions import ValidationError
 from agency.forms import NewspaperForm, RedactorCreationForm, RedactorUpdateForm
-from agency.models import Newspaper, Topic, Redactor
+from agency.models import Topic
 
 User = get_user_model()
 
