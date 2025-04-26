@@ -1,0 +1,13 @@
+asgiref==3.8.1
+Django==5.2
+django-appconf==1.1.0
+django-crispy-forms==1.14.0
+django-debug-toolbar==5.1.0
+Faker==37.1.0
+gunicorn==23.0.0
+packaging==25.0
+psycopg2-binary==2.9.10
+python-dotenv==1.1.0
+sqlparse==0.5.3
+tzdata==2025.2
+whitenoise==6.9.0
