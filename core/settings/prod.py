@@ -2,7 +2,7 @@ from .base import *
 
 DEBUG = "False"
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "newspaper-agency-m9df.onrender.com", "*"]
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
