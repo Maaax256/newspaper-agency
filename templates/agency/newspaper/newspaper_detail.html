@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}
+  <title>Newspaper</title>
+{% endblock %}
+
+{% block content %}
+  <h1>{{ newspaper.title }}</h1>
+  {% if user in newspaper.redactors.all %}
+    <span>
+      <a href="{% url 'agency:newspaper-update' newspaper.pk %}" class="btn btn-primary">
+        Update
+      </a>
+    </span>
+    <span>
+      <a href="{% url 'agency:newspaper-delete' newspaper.pk %}" class="btn btn-danger">
+        Delete
+      </a>
+    </span>
+  {% endif %}
+  <p>{{ newspaper.published_date }}</p>
+  <p>{{ newspaper.content }}</p>
+
+  {% if newspaper.topics.all %}
+    <span>Topics:</span>
+    {% for topic in newspaper.topics.all %}
+      <span>
+        <a href="{% url 'agency:topic-detail' topic.pk %}" class="m-1 btn btn-primary link-to-page">
+          {{ topic.name }}
+        </a>
+      </span>
+    {% endfor %}
+  {% else %}
+    <p>There are no topics for this newspaper</p>
+  {% endif %}
+
+  {% if newspaper.redactors.all %}
+    <h2>Redactors who published this newspaper:</h2>
+    <table class="table">
+      <tr>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Years of experience</th>
+        <th>Details</th>
+      </tr>
+      {% for redactor in newspaper.redactors.all %}
+      <tr>
+        <td>{{ redactor.first_name }}</td>
+        <td>{{ redactor.last_name }}</td>
+        <td>{{ redactor.years_of_experience }}</td>
+        <td>
+          <a href="{% url 'agency:redactor-detail' redactor.pk %}" class="btn btn-primary link-to-page">
+            See details
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>There are no redactors of this newspaper</p>
+  {% endif %}
+{% endblock %}

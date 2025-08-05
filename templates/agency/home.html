@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}<title>Home</title>{% endblock %}
+
+{% block content %}
+  <h1>Top 10 redactors by experience</h1>
+  {% if top_exp_redactors %}
+    <table class="table">
+      <tr>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Years of experience</th>
+        <th>Details</th>
+      </tr>
+      {% for redactor in top_exp_redactors %}
+      <tr>
+        <td>{{ redactor.first_name }}</td>
+        <td>{{ redactor.last_name }}</td>
+        <td>{{ redactor.years_of_experience }}</td>
+        <td>
+          <a href="{% url 'agency:redactor-detail' redactor.pk %}" class="btn btn-primary link-to-page">
+            See details
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>There are no redactors.</p>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,42 @@
+<ul class="sidebar-nav list-group">
+  {% if user.is_authenticated %}
+    <li class="list-group-item">{{ user.get_username }}</li>
+    <li class="list-group-item">
+      <a href="{% url 'agency:profile-update' user.pk %}">
+        My profile
+      </a>
+    </li>
+    <li class="list-group-item">
+      <a href="{% url 'agency:my-newspapers' %}">
+        My Newspapers
+      </a>
+    </li>
+    <li class="list-group-item">
+      <form action="{% url 'logout' %}" method="post" class="form-inline">
+        {% csrf_token %}
+        <button type="submit">Log Out</button>
+      </form>
+    </li>
+  {% else %}
+{#    <li class="list-group-item"><a href="{% url 'login' %}?next={{request.path}}">Log in</a></li>#}
+    <li class="list-group-item">
+      <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Log in</button>
+      </form>
+    </li>
+    <li class="list-group-item">
+      <form action="{% url 'agency:redactor-create' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Register</button>
+      </form>
+    </li>
+  {% endif %}
+
+  <br>
+
+  <li class="list-group-item"><a href="{% url 'agency:home' %}">Home</a></li>
+  <li class="list-group-item"><a href="{% url 'agency:newspaper-list' %}">Newspapers</a></li>
+  <li class="list-group-item"><a href="{% url 'agency:redactor-list' %}">Redactors</a></li>
+  <li class="list-group-item"><a href="{% url 'agency:topic-list' %}">Topics</a></li>
+</ul>

@@ -1,0 +1,79 @@
+from django.urls import path
+
+from agency.views import (NewspaperListView,
+                          index,
+                          RedactorListView,
+                          TopicListView,
+                          NewspaperDetailView, TopicDetailView, RedactorDetailView, NewspaperCreateView,
+                          NewspaperUpdateView, MyNewspapersListView, ProfileUpdateView, RegistrationView,
+                          NewspaperDeleteView)
+
+urlpatterns = [
+    path("", index, name="home"),
+    path(
+        "newspapers/",
+        NewspaperListView.as_view(),
+        name="newspaper-list"
+    ),
+    path(
+        "redactors/",
+        RedactorListView.as_view(),
+        name="redactor-list"
+    ),
+    path(
+        "topics/",
+        TopicListView.as_view(),
+        name="topic-list"
+    ),
+    path(
+        "my-newspapers/",
+        MyNewspapersListView.as_view(),
+        name="my-newspapers"
+    ),
+
+    path(
+        "newspapers/<int:pk>/",
+        NewspaperDetailView.as_view(),
+        name="newspaper-detail"
+    ),
+    path(
+        "redactors/<int:pk>/",
+        RedactorDetailView.as_view(),
+        name="redactor-detail"
+    ),
+    path(
+        "topics/<int:pk>/",
+        TopicDetailView.as_view(),
+        name="topic-detail"
+    ),
+
+    path(
+        "newspapers/create/",
+        NewspaperCreateView.as_view(),
+        name="newspaper-create"
+    ),
+
+    path(
+        "newspapers/<int:pk>/update/",
+        NewspaperUpdateView.as_view(),
+        name="newspaper-update"
+    ),
+    path(
+        "redactors/<int:pk>/update/",
+        ProfileUpdateView.as_view(),
+        name="profile-update"
+    ),
+    path(
+        "redactors/create/",
+        RegistrationView.as_view(),
+        name="redactor-create"
+    ),
+
+    path(
+        "newspapers/<int:pk>/delete/",
+        NewspaperDeleteView.as_view(),
+        name="newspaper-delete"
+    )
+]
+
+app_name = "agency"

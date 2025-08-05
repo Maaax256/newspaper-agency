@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}<title>Newspapers</title>{% endblock %}
+
+{% block content %}
+  <h1>Newspapers</h1>
+  <a href="{% url 'agency:newspaper-create' %}" class="btn btn-primary">
+    Create a new newspaper
+  </a>
+
+  {% if newspaper_list %}
+    <table class="table">
+      <tr>
+        <th>Title</th>
+        <th>Publication date</th>
+        <th>Details</th>
+      </tr>
+      {% for newspaper in newspaper_list %}
+      <tr>
+        <td>{{ newspaper.title }}</td>
+        <td>{{ newspaper.published_date }}</td>
+        <td>
+          <a href="{% url 'agency:newspaper-detail' newspaper.pk %}" class="btn btn-primary link-to-page">
+            See details
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>There are no published newspapers.</p>
+  {% endif %}
+{% endblock %}
